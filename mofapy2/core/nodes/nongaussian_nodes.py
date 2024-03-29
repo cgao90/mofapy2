@@ -245,7 +245,7 @@ class Poisson_PseudoY(PseudoY_Seeger):
         Ztmp = self.markov_blanket["Z"].getExpectations()
         W, WW = Wtmp["E"], Wtmp["E2"]
         Z, ZZ = Ztmp["E"], Ztmp["E2"]
-        zeta = np.asarray(self.params["zeta"])
+        zeta = cp.asnumpy(self.params["zeta"])
         tau = self.markov_blanket["Tau"].getValue()
         mask = self.getMask()
 
