@@ -163,6 +163,8 @@ class BayesNet(object):
                 if total:
                     Ypred = np.dot(Z[gg, :], W[m].T)
                     Ypred[mask[gg, :]] = 0.0
+                    print(type(Y[m][gg, :]))
+                    print(type(Ypred))
                     Res = np.sum((Y[m][gg, :] - Ypred) ** 2.0)
                     r2[g][m] = 1.0 - Res / SS
 
