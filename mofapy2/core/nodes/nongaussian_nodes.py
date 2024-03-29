@@ -230,10 +230,10 @@ class Poisson_PseudoY(PseudoY_Seeger):
 
         # regress out feature-wise mean from the pseudodata
 
-        print(type(self.E))
-        print(type(self.E.mean(axis=0)))
-        print(type(self.E.mean(axis=0).data))
-        self.means = cp.asarray(self.E.mean(axis=0).data)
+        # print(type(self.E))
+        # print(type(self.E.mean(axis=0)))
+        # print(type(self.E.mean(axis=0).data))
+        self.means = self.E.mean(axis=0)
         # print(f'means: {type(self.means)}')
         # print(f'E: {type(self.E)}')
         self.E -= self.means
