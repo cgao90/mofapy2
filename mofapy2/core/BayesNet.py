@@ -11,6 +11,7 @@ import pandas as pd
 import sys
 import numpy.ma as ma
 import math
+import cupy as cp
 
 # import resource
 import numpy as np
