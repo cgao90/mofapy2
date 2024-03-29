@@ -189,7 +189,7 @@ class BayesNet(object):
             r2 = self.calculate_variance_explained()
 
             tmp = [
-                s.where((r2[g] > min_r2).sum(axis=0) == 0)[0]
+                np.where((r2[g] > min_r2).sum(axis=0) == 0)[0]
                 for g in range(self.dim["G"])
             ]
             drop_dic["min_r2"] = list(set.intersection(*map(set, tmp)))
