@@ -229,7 +229,10 @@ class Poisson_PseudoY(PseudoY_Seeger):
         self.E[self.mask] = 0.0
 
         # regress out feature-wise mean from the pseudodata
+        
         self.means = self.E.mean(axis=0).data
+        print(f'means: {type(self.means)}')
+        print(f'E: {type(self.E)}')
         self.E -= self.means
 
     def calculateELBO(self):
