@@ -253,6 +253,12 @@ class Poisson_PseudoY(PseudoY_Seeger):
         ZW = Z.dot(W.T)
         ZZWW = np.square(ZW) - np.dot(np.square(Z), np.square(W).T) + ZZ.dot(WW.T)
 
+        print(type(tau))
+        print(type(ZZWW))
+        print(type(ZW))
+        print(type(zeta))
+        print(type(self.obs))
+
         # term1 = 0.5*tau*(ZW - zeta)**2
         term1 = 0.5 * tau * (ZZWW - 2 * ZW * zeta + np.square(zeta))
         term2 = (ZW - zeta) * (sigmoid(zeta) * (1.0 - self.obs / self.ratefn(zeta)))
