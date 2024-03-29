@@ -231,9 +231,9 @@ class Poisson_PseudoY(PseudoY_Seeger):
         # regress out feature-wise mean from the pseudodata
         
         self.means = self.E.mean(axis=0).data
-        print(f'means: {type(self.means)}')
-        print(f'E: {type(self.E)}')
-        self.E -= self.means
+        # print(f'means: {type(self.means)}')
+        # print(f'E: {type(self.E)}')
+        self.E -= cp.asarray(self.means)
 
     def calculateELBO(self):
         """Compute Evidence Lower Bound"""
