@@ -216,6 +216,9 @@ class Poisson_PseudoY(PseudoY_Seeger):
     def updateExpectations(self):
         # Update the pseudodata
         tau = self.markov_blanket["Tau"].getValue()
+        print(f'tau: {type(tau)}')
+        print(f'zeta: {type(self.params["zeta"])}')
+        print(f'obs: {type(self.obs}')
         self.E = (
             self.params["zeta"]
             - sigmoid(self.params["zeta"])
