@@ -15,6 +15,7 @@ from __future__ import division
 import scipy as s
 import numpy.ma as ma
 import numpy as np
+import cupy as cp
 
 from .variational_nodes import (
     Unobserved_Variational_Node,
@@ -216,14 +217,14 @@ class Poisson_PseudoY(PseudoY_Seeger):
     def updateExpectations(self):
         # Update the pseudodata
         tau = self.markov_blanket["Tau"].getValue()
-        print(f'tau: {type(tau)}')
-        print(f'zeta: {type(self.params["zeta"])}')
-        print(f'obs: {type(self.obs)}')
+        # print(f'tau: {type(tau)}')
+        # print(f'zeta: {type(self.params["zeta"])}')
+        # print(f'obs: {type(self.obs)}')
         self.E = (
             self.params["zeta"]
             - sigmoid(self.params["zeta"])
-            * (1 - self.obs / self.ratefn(self.params["zeta"]))
-            / tau
+            * (1 - cp.asarray(self.obs) / self.ratefn(self.params["zeta"]))
+            / cp.asarray(tau)
         )
         self.E[self.mask] = 0.0
 
