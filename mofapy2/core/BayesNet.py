@@ -163,8 +163,8 @@ class BayesNet(object):
                 if total:
                     Ypred = np.dot(Z[gg, :], W[m].T)
                     Ypred[mask[gg, :]] = 0.0
-                    print(type(Y[m][gg, :]))
-                    print(type(Ypred))
+                    # print(type(Y[m][gg, :]))
+                    # print(type(Ypred))
                     Res = np.sum((Y[m][gg, :] - Ypred) ** 2.0)
                     r2[g][m] = 1.0 - Res / SS
 
@@ -173,9 +173,9 @@ class BayesNet(object):
                     for k in range(self.dim["K"]):
                         Ypred = np.outer(Z[gg, k], W[m][:, k])
                         Ypred[mask[gg, :]] = 0.0
-                        print(type(Y[m][gg, :]))
-                        print(type(Ypred))
-                        Res = np.sum((Y[m][gg, :] - Ypred) ** 2.0)
+                        # print(type(Y[m][gg, :]))
+                        # print(type(Ypred))
+                        Res = np.sum((cp.asnumpy(Y[m][gg, :]) - Ypred) ** 2.0)
                         r2[g][m, k] = 1.0 - Res / SS
         return r2
 
