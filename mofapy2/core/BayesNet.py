@@ -166,7 +166,7 @@ class BayesNet(object):
                     Ypred[mask[gg, :]] = 0.0
                     # print(type(Y[m][gg, :]))
                     # print(type(Ypred))
-                    Res = np.sum((Y[m][gg, :] - Ypred) ** 2.0)
+                    Res = np.sum((cp.asnumpy(Y[m][gg, :]) - Ypred) ** 2.0)
                     r2[g][m] = 1.0 - Res / SS
 
                 # Variance explained per factor
